@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuro Diversión | Aprender también puede ser divertido</title>
+<style>
+:root{
+ --navy:#243746;--ink:#34444b;--muted:#6d7a80;--paper:#fffdf7;
+ --sky:#bfe4e8;--blue:#5ba9bc;--yellow:#f5cf67;--coral:#ee907c;
+ --green:#88b98b;--lav:#a99bd2;--cream:#f5efe3;--line:#e4dbcd;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.header{
+ position:sticky;top:0;z-index:20;background:rgba(255,253,247,.94);
+ backdrop-filter:blur(10px);border-bottom:1px solid var(--line)
+}
+.navbar{max-width:1180px;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;color:var(--navy)}
+.logo-mark{width:40px;height:40px;border-radius:13px;background:var(--yellow);display:grid;place-items:center;box-shadow:0 4px 0 #dcae39;font-size:22px}
+.links{display:flex;gap:5px;align-items:center}
+.links a{padding:9px 12px;border-radius:10px;font-size:14px;font-weight:bold;color:#617078}
+.links a:hover{background:#eef6f5;color:var(--navy)}
+.nav-cta{background:var(--navy)!important;color:#fff!important}
+.menu{display:none;border:0;background:none;font-size:25px}
+.container{max-width:1180px;margin:auto;padding:0 22px}
+.hero{min-height:650px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.kicker{display:inline-block;padding:7px 11px;border-radius:30px;background:#edf5ee;color:#52735a;font-size:12px;font-weight:900;letter-spacing:.5px}
+.hero h1{font-size:clamp(42px,6vw,72px);line-height:.98;color:var(--navy);margin:18px 0}
+.hero h1 span{position:relative;display:inline-block}
+.hero h1 span:after{content:"";position:absolute;left:2px;right:5px;height:9px;bottom:-2px;background:var(--yellow);z-index:-1;transform:rotate(-2deg);border-radius:8px}
+.hero p{font-size:18px;line-height:1.7;color:var(--muted);max-width:650px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{border:0;padding:13px 18px;border-radius:13px;font-weight:900;cursor:pointer}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 4px 0 #44899a}
+.btn-secondary{background:#f1eadc;color:var(--navy)}
+.hero-art{position:relative;min-height:450px;display:grid;place-items:center}
+.blob{width:360px;height:390px;background:#eaf4f0;border-radius:49% 51% 43% 57%/44% 43% 57% 56%;transform:rotate(5deg);position:absolute}
+.character{position:relative;width:235px;height:270px}
+.head{position:absolute;left:35px;top:0;width:165px;height:150px;border-radius:47%;background:var(--yellow);box-shadow:0 7px 0 #dfb13e}
+.eye{position:absolute;top:57px;width:14px;height:19px;background:var(--navy);border-radius:50%}
+.eye.l{left:76px}.eye.r{right:76px}
+.mouth{position:absolute;left:82px;top:93px;width:70px;height:34px;border-bottom:6px solid var(--navy);border-radius:0 0 70px 70px}
+.body{position:absolute;left:60px;top:132px;width:115px;height:120px;border-radius:45px 45px 25px 25px;background:var(--coral);box-shadow:0 7px 0 #d87865}
+.arm{position:absolute;top:165px;width:58px;height:24px;background:var(--coral);border-radius:30px}
+.arm.l{left:18px;transform:rotate(22deg)}.arm.r{right:18px;transform:rotate(-22deg)}
+.star{position:absolute;font-size:30px}.s1{top:55px;right:25px}.s2{bottom:45px;left:20px}.s3{top:20px;left:35px}
+.note{background:#fff;border:2px solid var(--line);padding:15px 18px;border-radius:16px;box-shadow:0 6px 0 rgba(40,55,64,.05);max-width:210px;font-size:13px;line-height:1.5}
+.note strong{display:block;color:var(--navy);margin-bottom:4px}
+.note-a{position:absolute;right:0;top:50px}.note-b{position:absolute;left:0;bottom:30px}
+.section{padding:85px 0}
+.section.alt{background:#f7f2e9}
+.center{text-align:center}.eyebrow{font-size:12px;font-weight:900;color:var(--blue-dark,#347f94);letter-spacing:1px}
+h2{font-size:38px;line-height:1.1;color:var(--navy);margin:10px 0 14px}
+.lead{max-width:680px;margin:0 auto;color:var(--muted);line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
+.card{background:#fff;border:2px solid var(--line);border-radius:20px;padding:25px;position:relative}
+.card:nth-child(1){transform:rotate(-1deg)}.card:nth-child(2){transform:rotate(1deg)}.card:nth-child(3){transform:rotate(-.5deg)}
+.icon{font-size:35px}.card h3{margin:10px 0 7px;color:var(--navy);font-size:20px}.card p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:45px;align-items:center}
+.poster{background:var(--navy);color:white;border-radius:27px;padding:35px;min-height:350px;position:relative;overflow:hidden}
+.poster:after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:var(--blue);right:-70px;bottom:-75px}
+.poster h3{font-size:30px;margin:0 0 15px}.poster p{line-height:1.7;color:#dce9eb}
+.sticker{display:inline-block;background:var(--yellow);color:var(--navy);padding:7px 10px;border-radius:9px;font-weight:900;transform:rotate(-4deg)}
+.checks{display:grid;gap:18px}.check{display:flex;gap:14px}.check-icon{min-width:38px;height:38px;border-radius:12px;background:#edf5ee;display:grid;place-items:center}.check b{display:block;color:var(--navy);margin-bottom:4px}.check p{margin:0;color:var(--muted);line-height:1.5;font-size:14px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:35px}.step{padding:20px;background:#fff;border:2px dashed #d9d0c3;border-radius:18px}.num{font-size:12px;font-weight:900;color:var(--coral)}.step h3{margin:8px 0;color:var(--navy)}.step p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.audience{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:35px}.aud{background:#fff;padding:20px;border-radius:18px;border:2px solid var(--line);text-align:center}.aud div{font-size:32px}.aud b{display:block;margin-top:8px;color:var(--navy)}.aud span{font-size:12px;color:var(--muted)}
+.cta{margin:70px 0 30px;background:#e8f4f3;border:2px solid #d4e9e6;border-radius:28px;padding:40px;text-align:center}.cta h2{margin-top:0}.cta .buttons{justify-content:center}
+footer{border-top:1px solid var(--line);padding:28px 0;color:#7b878c;font-size:12px;text-align:center}
+@media(max-width:850px){
+ .links{display:none}.menu{display:block}.hero{grid-template-columns:1fr;padding-top:35px;min-height:auto}.hero-art{min-height:420px}.cards,.steps{grid-template-columns:1fr 1fr}.about{grid-template-columns:1fr}.audience{grid-template-columns:1fr 1fr}
+}
+@media(max-width:550px){
+ .container{padding:0 16px}.hero h1{font-size:45px}.hero-art{transform:scale(.9);margin:-20px 0}.cards,.steps,.audience{grid-template-columns:1fr}.section{padding:60px 0}.note-a{right:-5px}.note-b{left:-5px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+<nav class="navbar">
+<a class="logo" href="#inicio"><span class="logo-mark">🧠</span>Neuro Diversión</a>
+<div class="links">
+<a href="#inicio">Inicio</a><a href="#que-es">¿Qué es?</a><a href="#como">Cómo funciona</a><a href="#para-quien">¿Para quién?</a><a class="nav-cta" href="#contacto">Conócenos</a>
+</div>
+<button class="menu" onclick="toggleMenu()">☰</button>
+</nav>
+</header>
+
+<main id="inicio">
+<section class="container hero">
+<div>
+<span class="kicker">APRENDER · JUGAR · COMPARTIR</span>
+<h1>Un lugar donde <span>aprender</span> se siente diferente.</h1>
+<p>Neuro Diversión es una propuesta educativa e inclusiva que combina actividades interactivas, situaciones cotidianas y juegos sencillos para fortalecer habilidades mientras cada persona aprende a su propio ritmo.</p>
+<div class="buttons"><a class="btn btn-primary" href="#que-es">Conocer el proyecto →</a><a class="btn btn-secondary" href="#como">Ver cómo funciona</a></div>
+</div>
+<div class="hero-art">
+<div class="blob"></div>
+<div class="character"><div class="head"><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div><div class="body"></div><div class="arm l"></div><div class="arm r"></div></div>
+<div class="star s1">✦</div><div class="star s2">✦</div><div class="star s3">•</div>
+<div class="note note-a"><strong>🌟 Sin miedo a equivocarse</strong>Cada intento puede convertirse en aprendizaje.</div>
+<div class="note note-b"><strong>🎮 Actividades interactivas</strong>Visuales, sencillas y pensadas para practicar.</div>
+</div>
+</section>
+
+<section id="que-es" class="section alt">
+<div class="container">
+<div class="center"><span class="eyebrow">LA IDEA</span><h2>¿Qué es Neuro Diversión?</h2><p class="lead">Una plataforma pensada para reducir barreras digitales y convertir el tiempo frente a una pantalla en una experiencia de aprendizaje, autonomía e inclusión.</p></div>
+<div class="cards">
+<article class="card"><div class="icon">🧩</div><h3>Aprendizaje lúdico</h3><p>Juegos y actividades que ayudan a practicar memoria, atención, decisiones, comunicación y otras habilidades.</p></article>
+<article class="card"><div class="icon">🛡️</div><h3>Error seguro</h3><p>Equivocarse no significa fracasar. La experiencia invita a volver a intentar sin generar una presión innecesaria.</p></article>
+<article class="card"><div class="icon">🤝</div><h3>Convivencia</h3><p>Situaciones cotidianas permiten practicar normas, cooperación, comunicación y toma de decisiones.</p></article>
+</div>
+</div>
+</section>
+
+<section class="section" id="como">
+<div class="container about">
+<div class="poster"><span class="sticker">PASO A PASO</span><h3>Pequeños retos.<br>Grandes avances.</h3><p>La propuesta combina una interfaz clara con actividades que presentan situaciones de manera visual y fácil de comprender. El objetivo es acompañar, no complicar.</p><div style="font-size:54px;margin-top:20px">🧠 → 🎮 → ⭐</div></div>
+<div>
+<span class="eyebrow">LA EXPERIENCIA</span><h2>¿Cómo funciona?</h2>
+<div class="checks">
+<div class="check"><div class="check-icon">1</div><div><b>Elige una actividad</b><p>La persona puede escoger entre diferentes ejercicios según lo que quiera practicar.</p></div></div>
+<div class="check"><div class="check-icon">2</div><div><b>Explora y responde</b><p>Las instrucciones son directas y los elementos visuales ayudan a entender qué hacer.</p></div></div>
+<div class="check"><div class="check-icon">3</div><div><b>Intenta de nuevo</b><p>Si una respuesta no es correcta, se puede volver a intentar y comprender la situación.</p></div></div>
+<div class="check"><div class="check-icon">4</div><div><b>Avanza a tu ritmo</b><p>La idea es valorar el proceso y fortalecer la confianza, la autonomía y la participación.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="container center"><span class="eyebrow">PROPUESTA</span><h2>De la idea a la experiencia</h2><p class="lead">El proyecto puede desarrollarse y validarse paso a paso para comprobar que la plataforma realmente sea clara y útil.</p>
+<div class="steps">
+<div class="step"><span class="num">01 · CONOCER</span><h3>Diagnóstico</h3><p>Identificar necesidades, barreras y características de los usuarios.</p></div>
+<div class="step"><span class="num">02 · CREAR</span><h3>Diseño</h3><p>Construir una interfaz sencilla con actividades accesibles.</p></div>
+<div class="step"><span class="num">03 · PROBAR</span><h3>Piloto</h3><p>Observar cómo interactúan los usuarios con la plataforma.</p></div>
+<div class="step"><span class="num">04 · MEJORAR</span><h3>Validación</h3><p>Analizar resultados y realizar ajustes para mejorar la experiencia.</p></div>
+</div></div>
+</section>
+
+<section class="section" id="para-quien">
+<div class="container center"><span class="eyebrow">INCLUSIÓN</span><h2>¿Para quién está pensada?</h2><p class="lead">La propuesta tiene un usuario principal, pero busca involucrar a las personas que acompañan su proceso.</p>
+<div class="audience">
+<div class="aud"><div>🧑‍🎓</div><b>Personas con síndrome de Down</b><span>Etapas escolares y formativas.</span></div>
+<div class="aud"><div>👨‍👩‍👧</div><b>Familias</b><span>Acompañamiento y apoyo.</span></div>
+<div class="aud"><div>👩‍🏫</div><b>Docentes</b><span>Apoyo dentro del aprendizaje.</span></div>
+<div class="aud"><div>🧑‍💻</div><b>Profesionales</b><span>Orientación y acompañamiento.</span></div>
+</div></div>
+</section>
+
+<section class="container" id="contacto">
+<div class="cta"><span class="eyebrow">NEURO DIVERSIÓN</span><h2>La tecnología también puede abrir puertas.</h2><p class="lead">Una propuesta hecha para aprender, practicar y participar con mayor confianza.</p><div class="buttons"><a class="btn btn-primary" href="#inicio">Volver al inicio ↑</a></div></div>
+</section>
+</main>
+<footer>Neuro Diversión · Proyecto educativo e inclusivo · Gimnasio Moderno Robinson Crusoe · 1001 · 2026</footer>
+
+<script>
+function toggleMenu(){
+ const links=document.querySelector('.links');
+ links.style.display=links.style.display==='flex'?'none':'flex';
+ links.style.position='absolute';links.style.top='70px';links.style.left='12px';links.style.right='12px';
+ links.style.background='#fffdf7';links.style.padding='10px';links.style.border='1px solid #e4dbcd';links.style.borderRadius='14px';links.style.flexDirection='column';
+}
+</script>
+</body>
+</html>
